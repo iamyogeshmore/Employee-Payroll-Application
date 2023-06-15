@@ -11,28 +11,31 @@ import java.util.List;
 public class EmployeeService implements iEmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
+
     //--------------------------------- Get String Message ---------------------------------
     public String employeeMessage() {
         return "Hello World";
     }
 
-    //--------------- UC 2 ---------------//
-
+    //--------------------------------- Add employee ---------------------------------
     @Override
     public Employee saveEmployees(Employee employee) {
         return employeeRepository.save(employee);
     }
 
+    //--------------------------------- Get employee by id ---------------------------------
     @Override
     public Employee findEmployeeById(Integer id) {
         return employeeRepository.findById(id).orElse(null);
     }
 
+    //--------------------------------- Get all employee ---------------------------------
     @Override
     public List<Employee> findEmployees() {
         return employeeRepository.findAll();
     }
 
+    //--------------------------------- Edit employee data ---------------------------------
     @Override
     public Employee editEmployee(Employee employee, Integer id) {
         Employee existingGreet = employeeRepository.findById(id).orElse(null);
@@ -43,6 +46,7 @@ public class EmployeeService implements iEmployeeService {
         } else return null;
     }
 
+    //--------------------------------- Delete employee ---------------------------------
     @Override
     public String deleteEmployee(Integer id) {
         employeeRepository.deleteById(id);

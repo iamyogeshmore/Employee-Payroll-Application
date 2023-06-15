@@ -1,5 +1,6 @@
 package com.employeepayrollapplication.model;
 
+import com.employeepayrollapplication.dto.EmployeeDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,6 +15,14 @@ public class Employee {
 
     public String getName() {
         return name;
+    }
+
+    public Employee(int empId, EmployeeDTO employeeDTO) {
+        this.id = empId;
+        this.name = employeeDTO.name;
+        this.department = employeeDTO.department;
+        this.gender = employeeDTO.gender;
+        this.salary = String.valueOf(employeeDTO.salary);
     }
 
     @Id
