@@ -1,30 +1,32 @@
 package com.employeepayrollapplication.dto;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @RequiredArgsConstructor
-public class EmployeeDTO {
-    @NotNull(message = "Employee Name Cannot be Null")
-    @Pattern(regexp = "^[A-Z]{1}[a-zA-z\\s]{2,}$", message = "Employee Name is Incorrect")
+public @ToString class EmployeeDTO {
+    @NotNull(message = "Employee Name cannot be null")
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Employee Name Invalid")
     public String name;
-    @NotEmpty(message = "Gender Cannot be empty")
-    public String gender;
-    @NotEmpty(message = "Department Cannot be empty")
-    public String department;
-    @Min(value = 500, message = "Salary Should be minimum 500")
+    @Min(value = 500, message = "Min Wage should be more than 500")
     public long salary;
-
-    @NotEmpty(message = "profilePic Cannot Be Empty.")
-    public String profilePic;
-
-    @NotEmpty(message = "note Cannot Be Empty.")
+    @Pattern(regexp = "Male|Female", message = "Gender needs to be Male or Female")
+    public String gender;
+    @NotNull(message = "startDate should Not be Empty")
+    @JsonFormat(pattern = "dd MM yyyy")
+    @PastOrPresent(message = "startDate should be past or present date")
+    public LocalDate startDate;
+    @NotBlank(message = "Note cannot be Empty")
     public String note;
-
-    public String startDate;
+    @NotBlank(message = "profilePic cannot be Empty")
+    public String profilePic;
+    @NotNull(message = "department should Not be Empty")
+    public List<String> department;
 }

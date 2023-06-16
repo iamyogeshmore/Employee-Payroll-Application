@@ -1,43 +1,44 @@
 package com.employeepayrollapplication.model;
 
 import com.employeepayrollapplication.dto.EmployeeDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
 @RequiredArgsConstructor
+@Table(name = "employee")
+
 public class Employee {
-    int id;
-    String name;
-    String department;
-    String gender;
-    long salary;
-    String startDate;
-    String note;
-    String profilePic;
-
-
-    public Employee(int empId, EmployeeDTO employeeDTO) {
-        this.id = empId;
-        this.name = employeeDTO.name;
-        this.department = employeeDTO.department;
-        this.gender = employeeDTO.gender;
-        this.salary = employeeDTO.salary;
-        this.startDate = employeeDTO.startDate;
-        this.note = employeeDTO.note;
-        this.profilePic = employeeDTO.profilePic;
-    }
-
     @Id
+    @Column(name = "employee_id")
     @GeneratedValue
-    public int getId() {
-        return id;
+    int id;
+    @Column(name = "name")
+    private String name;
+    private Long salary;
+    private String gender;
+    private String profilePic;
+    private String note;
+    private LocalDate startDate;
+    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "id"))
+    @ElementCollection
+    public List<String> department;
+
+    public Employee(EmployeeDTO employeeDTO) {
+        this.updateEmployee(employeeDTO);
     }
-    public void setId(int id) {
-        this.id = id;
+    public void updateEmployee(EmployeeDTO employeeDTO){
+        this.name= employeeDTO.name;
+        this.department=employeeDTO.department;
+        this.gender=employeeDTO.gender;
+        this.salary=employeeDTO.salary;
+        this.startDate=employeeDTO.startDate;
+        this.profilePic=employeeDTO.profilePic;
+        this.note=employeeDTO.note;
     }
 }
