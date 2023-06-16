@@ -25,20 +25,21 @@ public class Employee {
     private String profilePic;
     private String note;
     private LocalDate startDate;
-    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "id"))
+    @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "id"))
     @ElementCollection
     public List<String> department;
 
     public Employee(EmployeeDTO employeeDTO) {
         this.updateEmployee(employeeDTO);
     }
-    public void updateEmployee(EmployeeDTO employeeDTO){
-        this.name= employeeDTO.name;
-        this.department=employeeDTO.department;
-        this.gender=employeeDTO.gender;
-        this.salary=employeeDTO.salary;
-        this.startDate=employeeDTO.startDate;
-        this.profilePic=employeeDTO.profilePic;
-        this.note=employeeDTO.note;
+
+    public void updateEmployee(EmployeeDTO employeeDTO) {
+        this.name = employeeDTO.name;
+        this.department = employeeDTO.department;
+        this.gender = employeeDTO.gender;
+        this.salary = employeeDTO.salary;
+        this.startDate = employeeDTO.startDate;
+        this.profilePic = employeeDTO.profilePic;
+        this.note = employeeDTO.note;
     }
 }
