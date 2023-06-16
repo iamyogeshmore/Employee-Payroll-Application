@@ -64,14 +64,6 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(String name, String department, String gender, String salary, int id) {
-        this.name = name;
-        this.department = department;
-        this.gender = gender;
-        this.salary = salary;
-        this.id = id;
-    }
-
     public Employee() {
     }
 }
