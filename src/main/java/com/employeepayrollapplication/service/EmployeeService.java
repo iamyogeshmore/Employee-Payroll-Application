@@ -1,6 +1,7 @@
 package com.employeepayrollapplication.service;
 
 import com.employeepayrollapplication.dto.EmployeeDTO;
+import com.employeepayrollapplication.exception.EmployeePayrollException;
 import com.employeepayrollapplication.model.Employee;
 import com.employeepayrollapplication.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,10 @@ public class EmployeeService implements iEmployeeService {
     //--------------------------------- Get employee by id ---------------------------------
     @Override
     public Employee getEmployeePayrollDataById(int empId) {
-        return employeeList.get(empId - 1);
+        return employeeList.stream()
+                .filter(empData -> empData.getId() == empId)
+                .findFirst()
+                .orElseThrow(() -> new EmployeePayrollException("Employee Not Found"));
     }
 
     //--------------------------------- Get all employee ---------------------------------
