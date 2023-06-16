@@ -37,6 +37,8 @@ public class EmployeeService implements iEmployeeService {
     public Employee updateEmployeePayrollData(int empId, EmployeeDTO employeeDTO) {
         Employee empData = this.getEmployeePayrollDataById(empId);
         empData.setName(employeeDTO.name);
+        empData.setDepartment(employeeDTO.department);
+        empData.setGender(employeeDTO.gender);
         empData.setSalary(String.valueOf(employeeDTO.salary));
         employeeList.set(empId - 1, empData);
         return empData;
@@ -44,5 +46,6 @@ public class EmployeeService implements iEmployeeService {
 
     //--------------------------------- Delete employee ---------------------------------
     public void deleteEmployeePayrollData(int empID) {
+        employeeList.remove(empID - 1);
     }
 }
