@@ -2,6 +2,8 @@ package com.employeepayrollapplication.service;
 
 import com.employeepayrollapplication.dto.EmployeeDTO;
 import com.employeepayrollapplication.model.Employee;
+import com.employeepayrollapplication.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,15 +11,16 @@ import java.util.List;
 
 @Service
 public class EmployeeService implements iEmployeeService {
+    @Autowired
+    EmployeeRepository repository;
     private List<Employee> employeeList = new ArrayList<>();
 
     //--------------------------------- Add employee ---------------------------------
     @Override
     public Employee createEmployeePayrollData(EmployeeDTO employeeDTO) {
-        Employee empData = null;
-        empData = new Employee(employeeList.size() + 1, employeeDTO);
+        Employee empData = new Employee(employeeList.size() + 1, employeeDTO);
         employeeList.add(empData);
-        return empData;
+        return repository.save(empData);
     }
 
     //--------------------------------- Get employee by id ---------------------------------
