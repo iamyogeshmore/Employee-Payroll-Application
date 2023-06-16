@@ -11,20 +11,33 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class Employee {
+    int id;
     String name;
     String department;
     String gender;
-    String salary;
-    @Id
-    @GeneratedValue
+    long salary;
+    String startDate;
+    String note;
+    String profilePic;
 
-    int id;
+
     public Employee(int empId, EmployeeDTO employeeDTO) {
         this.id = empId;
         this.name = employeeDTO.name;
         this.department = employeeDTO.department;
         this.gender = employeeDTO.gender;
-        this.salary = String.valueOf(employeeDTO.salary);
+        this.salary = employeeDTO.salary;
+        this.startDate = employeeDTO.startDate;
+        this.note = employeeDTO.note;
+        this.profilePic = employeeDTO.profilePic;
     }
 
+    @Id
+    @GeneratedValue
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 }

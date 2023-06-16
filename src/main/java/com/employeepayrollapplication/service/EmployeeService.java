@@ -30,7 +30,7 @@ public class EmployeeService implements iEmployeeService {
         return employeeList.stream()
                 .filter(empData -> empData.getId() == empId)
                 .findFirst()
-                .orElseThrow(() -> new EmployeePayrollException("Employee Not Found"));
+                .orElseThrow(() -> new EmployeePayrollException("Employee not found."));
     }
 
     //--------------------------------- Get all employee ---------------------------------
@@ -46,7 +46,7 @@ public class EmployeeService implements iEmployeeService {
         empData.setName(employeeDTO.name);
         empData.setDepartment(employeeDTO.department);
         empData.setGender(employeeDTO.gender);
-        empData.setSalary(String.valueOf(employeeDTO.salary));
+        empData.setSalary(employeeDTO.salary);
         employeeList.set(empId - 1, empData);
         return empData;
     }
