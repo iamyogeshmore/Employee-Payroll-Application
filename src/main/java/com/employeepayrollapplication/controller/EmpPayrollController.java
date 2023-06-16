@@ -30,7 +30,7 @@ public class EmpPayrollController {
 
     //--------------------------------- Get employee by id ---------------------------------
     @GetMapping("/Find_Employee_Data/{empId}")
-    public ResponseEntity<ResponseDTO> getEmployeePayrollDataById (@PathVariable("empId") int empID) {
+    public ResponseEntity<ResponseDTO> getEmployeePayrollDataById(@PathVariable("empId") int empID) {
         Employee empData = null;
         empData = service.getEmployeePayrollDataById(empID);
         ResponseDTO respDTO = new ResponseDTO("Get Call For ID Successful", empData);
@@ -47,9 +47,9 @@ public class EmpPayrollController {
 
     //--------------------------------- Edit employee data ---------------------------------
     @PutMapping("/Update_Employee_Data")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empID") int empID, @RequestBody EmployeeDTO employeeDTO) {
         Employee empData = null;
-        empData = service.updateEmployeePayrollData(employeeDTO);
+        empData = service.updateEmployeePayrollData(empID, employeeDTO);
         ResponseDTO respDTO = new ResponseDTO("Updated Employee Payroll Data Successfully", empData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }

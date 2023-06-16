@@ -12,5 +12,6 @@ public interface iEmployeeService {
 
     Employee createEmployeePayrollData(EmployeeDTO employeeDTO);
 
-    Employee updateEmployeePayrollData(EmployeeDTO employeeDTO);
+    Employee updateEmployeePayrollData(int empId, EmployeeDTO employeeDTO);
+
 }

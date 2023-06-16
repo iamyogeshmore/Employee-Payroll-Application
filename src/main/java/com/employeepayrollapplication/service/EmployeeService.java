@@ -9,36 +9,36 @@ import java.util.List;
 
 @Service
 public class EmployeeService implements iEmployeeService {
+    private List<Employee> employeeList = new ArrayList<>();
 
     //--------------------------------- Add employee ---------------------------------
     @Override
     public Employee createEmployeePayrollData(EmployeeDTO employeeDTO) {
         Employee empData = null;
-        empData = new Employee(1, employeeDTO);
+        empData = new Employee(employeeList.size() + 1, employeeDTO);
+        employeeList.add(empData);
         return empData;
     }
 
     //--------------------------------- Get employee by id ---------------------------------
     @Override
     public Employee getEmployeePayrollDataById(int empId) {
-        Employee empData = null;
-        empData = new Employee(1, new EmployeeDTO("Yogesh", "male", "Engg", 35000));
-        return empData;
+        return employeeList.get(empId - 1);
     }
 
     //--------------------------------- Get all employee ---------------------------------
     @Override
     public List<Employee> getEmployeeData() {
-        List<Employee> empDataList = new ArrayList<>();
-        empDataList.add(new Employee(1, new EmployeeDTO("Yogesh", "male", "Engg.", 35000)));
-        return empDataList;
+        return employeeList;
     }
 
     //--------------------------------- Edit employee data ---------------------------------
     @Override
-    public Employee updateEmployeePayrollData(EmployeeDTO employeeDTO) {
-        Employee empData = null;
-        empData = new Employee(1, employeeDTO);
+    public Employee updateEmployeePayrollData(int empId, EmployeeDTO employeeDTO) {
+        Employee empData = this.getEmployeePayrollDataById(empId);
+        empData.setName(employeeDTO.name);
+        empData.setSalary(String.valueOf(employeeDTO.salary));
+        employeeList.set(empId - 1, empData);
         return empData;
     }
 
