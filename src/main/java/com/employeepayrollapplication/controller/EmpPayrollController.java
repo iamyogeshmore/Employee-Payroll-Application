@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-@CrossOrigin(allowedHeaders = "*", origins = "*")
 @Slf4j
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RestController
 public class EmpPayrollController {
     @Autowired
