@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-    @Query(value = "select * from employee,employee_department where employee_id = id and department = department",nativeQuery = true)
+    @Query(value = "select * from employee,employee_department where employee_id = id and department = department", nativeQuery = true)
     List<Employee> findEmployeeByDepartment(String department);
 }
