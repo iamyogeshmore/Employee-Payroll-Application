@@ -20,9 +20,7 @@ public @ToString class EmployeeDTO {
     @Pattern(regexp = "Male|Female", message = "Gender needs to be Male or Female")
     public String gender;
     @NotNull(message = "startDate should Not be Empty")
-    @JsonFormat(pattern = "dd MM yyyy")
-    @PastOrPresent(message = "startDate should be past or present date")
-    public LocalDate startDate;
+    public String startDate;
     @NotBlank(message = "Note cannot be Empty")
     public String note;
     @NotBlank(message = "profilePic cannot be Empty")

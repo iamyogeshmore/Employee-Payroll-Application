@@ -24,7 +24,7 @@ public class Employee {
     private String gender;
     private String profilePic;
     private String note;
-    private LocalDate startDate;
+    private String startDate;
     @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "id"))
     @ElementCollection
     public List<String> department;
