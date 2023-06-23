@@ -1,4 +1,4 @@
-# Employee-Payroll-Application \n
+# Employee-Payroll-Application (\n)
 
 The EmpPayrollController is a Spring MVC controller class for employee payroll data.  \n
 It handles HTTP requests for retrieving, creating, updating, and deleting employee data.  \n
