@@ -6,15 +6,15 @@ import com.employeepayrollapplication.model.Employee;
 import java.util.List;
 
 public interface iEmployeeService {
-    List<Employee> getEmployeeData();
+    List<Employee> ShowAllEmployee();
 
-    Employee getEmployeePayrollDataById(int empId);
+    Employee FindEmployeeDataById(int empId);
 
-    Employee createEmployeePayrollData(EmployeeDTO employeeDTO);
+    Employee RegisterEmployee(EmployeeDTO employeeDTO);
 
-    Employee updateEmployeePayrollData(int empId, EmployeeDTO employeeDTO);
+    Employee updateEmployeeData(int empId, EmployeeDTO employeeDTO);
 
-    String deleteEmployeePayrollData(int empId);
+    String deleteEmployeeByeId(int empId);
 
     List<Employee> getEmployeesByDepartment(String department);
 }

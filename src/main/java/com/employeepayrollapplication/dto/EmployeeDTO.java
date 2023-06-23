@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -19,8 +19,8 @@ public @ToString class EmployeeDTO {
     public long salary;
     @Pattern(regexp = "Male|Female", message = "Gender needs to be Male or Female")
     public String gender;
-    @NotNull(message = "startDate should Not be Empty")
-    public String startDate;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private Date startDate;
     @NotBlank(message = "Note cannot be Empty")
     public String note;
     @NotBlank(message = "profilePic cannot be Empty")

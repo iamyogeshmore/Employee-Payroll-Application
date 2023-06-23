@@ -1,11 +1,12 @@
 package com.employeepayrollapplication.model;
 
 import com.employeepayrollapplication.dto.EmployeeDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,7 @@ import java.util.List;
 public class Employee {
     @Id
     @Column(name = "employee_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @Column(name = "name")
     private String name;
@@ -24,7 +25,8 @@ public class Employee {
     private String gender;
     private String profilePic;
     private String note;
-    private String startDate;
+    @JsonFormat(pattern = "dd-MM-yyyy") // "23-06-2023"
+    private Date startDate;
     @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "id"))
     @ElementCollection
     public List<String> department;
@@ -38,7 +40,7 @@ public class Employee {
         this.department = employeeDTO.department;
         this.gender = employeeDTO.gender;
         this.salary = employeeDTO.salary;
-        this.startDate = employeeDTO.startDate;
+        this.startDate = employeeDTO.getStartDate();
         this.profilePic = employeeDTO.profilePic;
         this.note = employeeDTO.note;
     }
